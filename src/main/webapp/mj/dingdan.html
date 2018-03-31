@@ -1,0 +1,350 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>查看订单</title>
+<!-- ui框架引入css -->
+	<link href="css/weui.min.css" rel="stylesheet" type="text/css" />
+	<link href="css/jquery-weui.min.css" rel="stylesheet" type="text/css" />
+	<!-- 公用样式css -->
+	<link href="css/base.css" rel="stylesheet" type="text/css" />
+	<!-- 界面引入css -->
+	<link href="css/index.css" rel="stylesheet" type="text/css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link type="text/css" rel="stylesheet" href="css/style.css">
+ <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/carts.css">
+<script type="text/javascript" src="js/html5.js"></script>
+<script type="text/javascript" src="js/jquery.1.4.2-min.js"></script>
+</head>
+<body>
+<div class="pw">
+	<header class="body_header">
+		<div class="top">
+
+			<div class="menu">
+				
+			</div>
+		</div>
+	</header>
+	<section class="body_banner">
+		<div class="swipe">
+			<ul id="slider">
+				<li style="display:block"><img width="100%" src="images/banner01.jpg"/></li>
+				<li><img width="100%" src="images/banner02.jpg"/></li>
+				<li><img width="100%" src="images/banner03.jpg"/></li>
+				<li><img width="100%" src="images/banner04.jpg"/></li>
+			</ul>
+			<div id="pagenavi">
+				<a href="javascript:void(0);" class="active">1</a>
+				<a href="javascript:void(0);">2</a>
+				<a href="javascript:void(0);">3</a>
+				<a href="javascript:void(0);">4</a>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/touchScroll.js"></script>
+		<script type="text/javascript" src="js/touchslider.dev.js"></script>
+		<script type="text/javascript" src="js/run.js"></script>
+	</section>
+	<section class="body_main">
+		<div class="trip" id="nav">
+			<ul class="nav">
+				<li><a href="list.html"><img src="images/nov01.png"><br>商家分类</a></li>
+				<li><a href="about.html"><img src="images/nov02.png"><br>搜索商家</a></li>
+				<li><a href="dingdan.html"><img src="images/nov03.png"><br>查看订单</a></li>
+				<li><a href="cont.html"><img src="images/nov04.png"><br>联系我们</a></li>
+			</ul>
+		</div>
+<div class="main bot44">
+   <div class="weui-tab">
+      <div class="weui-navbar">
+        <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
+          已完成
+        </a>
+        <a class="weui-navbar__item" href="#tab2">
+          待付款
+        </a>
+        <a class="weui-navbar__item" href="#tab3">
+          待发货
+        </a>
+        <a class="weui-navbar__item" href="#tab4">
+          待收货
+        </a>
+      </div>
+      <div class="weui-tab__bd">
+        <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+           <div class="order-content">
+               <div class="order-con">
+                  <div class="title">
+                     <b class="num">WS19992002300222</b>
+                     <i class="state">已完成</i>
+                  </div>
+                  <div class="list">
+                     <b>
+                       <img src="" />
+                     </b>
+                     <i>
+                       <p>产品名称</p>
+                       <p class="num">数量</p>
+                     </i>
+                  </div>
+                  <div class="bot">
+                    <b class="price">¥16</b>
+                    <i class="data">2018-03-28</i>
+                  </div>
+               </div>
+               <div class="order-con">
+                  <div class="title">
+                     <b class="num">WS19992002300222</b>
+                     <i class="state">已完成</i>
+                  </div>
+                  <div class="list">
+                     <b>
+                       <img src="" />
+                     </b>
+                     <i>
+                       <p>产品名称</p>
+                       <p class="num">数量</p>
+                     </i>
+                  </div>
+                  <div class="bot">
+                    <b class="price">¥16</b>
+                    <i class="data">2018-03-28</i>
+                  </div>
+               </div>
+               <div class="order-con">
+                  <div class="title">
+                     <b class="num">WS19992002300222</b>
+                     <i class="state">已完成</i>
+                  </div>
+                  <div class="list">
+                     <b>
+                       <img src="" />
+                     </b>
+                     <i>
+                       <p>产品名称</p>
+                       <p class="num">数量</p>
+                     </i>
+                  </div>
+                  <div class="bot">
+                    <b class="price">¥16</b>
+                    <i class="data">2018-03-28</i>
+                  </div>
+               </div>
+           </div>
+        </div>
+        <div id="tab2" class="weui-tab__bd-item">
+          <div class="order-content">
+               <div class="order-con">
+                  <div class="title">
+                     <b class="num">WS19992002300222</b>
+                     <a href="../detail/order-pay.html" class="pay">去付款</a>
+                  </div>
+                  <div class="list">
+                     <b>
+                       <img src="" />
+                     </b>
+                     <i>
+                       <p>产品名称</p>
+                       <p class="num">数量</p>
+                     </i>
+                  </div>
+                  <div class="bot">
+                    <b class="price">¥16</b>
+                    <i class="data">2018-03-28</i>
+                  </div>
+               </div>
+               <div class="order-con">
+                  <div class="title">
+                     <b class="num">WS19992002300222</b>
+                     <a href="../detail/order-pay.html" class="pay">去付款</a>
+                  </div>
+                  <div class="list">
+                     <b>
+                       <img src="" />
+                     </b>
+                     <i>
+                       <p>产品名称</p>
+                       <p class="num">数量</p>
+                     </i>
+                  </div>
+                  <div class="bot">
+                    <b class="price">¥16</b>
+                    <i class="data">2018-03-28</i>
+                  </div>
+               </div>
+               <div class="order-con">
+                  <div class="title">
+                     <b class="num">WS19992002300222</b>
+                     <a href="../detail/order-pay.html" class="pay">去付款</a>
+                  </div>
+                  <div class="list">
+                     <b>
+                       <img src="" />
+                     </b>
+                     <i>
+                       <p>产品名称</p>
+                       <p class="num">数量</p>
+                     </i>
+                  </div>
+                  <div class="bot">
+                    <b class="price">¥1600.00</b>
+                    <i class="data">2016-03-28</i>
+                  </div>
+               </div>
+           </div>
+        </div>
+        <div id="tab3" class="weui-tab__bd-item">
+          <div class="order-content">
+               <div class="order-con">
+                  <div class="title">
+                     <b class="num">WS19992002300222</b>
+                     <i>待发货</i>
+                  </div>
+                  <div class="list">
+                     <b>
+                       <img src="" />
+                     </b>
+                     <i>
+                       <p>产品名称</p>
+                       <p class="num">数量</p>
+                     </i>
+                  </div>
+                  <div class="bot">
+                    <b class="price">¥16</b>
+                    <i class="data">2018-03-28</i>
+                  </div>
+               </div>
+               <div class="order-con">
+                  <div class="title">
+                     <b class="num">WS19992002300222</b>
+                     <i>待发货</i>
+                  </div>
+                  <div class="list">
+                     <b>
+                       <img src="" />
+                     </b>
+                     <i>
+                       <p>产品名称</p>
+                       <p class="num">数量</p>
+                     </i>
+                  </div>
+                  <div class="bot">
+                    <b class="price">¥16</b>
+                    <i class="data">2018-03-28</i>
+                  </div>
+               </div>
+               <div class="order-con">
+                  <div class="title">
+                     <b class="num">WS19992002300222</b>
+                     <i>待发货</i>
+                  </div>
+                  <div class="list">
+                     <b>
+                       <img src="" />
+                     </b>
+                     <i>
+                       <p>产品名称</p>
+                       <p class="num">数量</p>
+                     </i>
+                  </div>
+                  <div class="bot">
+                    <b class="price">¥16</b>
+                    <i class="data">2018-03-28</i>
+                  </div>
+               </div>
+           </div>
+        </div>
+        <div id="tab4" class="weui-tab__bd-item">
+          <div class="order-content">
+               <div class="order-con">
+                  <div class="title">
+                     <b class="num">WS19992002300222</b>
+                     <i class="look">确认收货</i>
+                  </div>
+                  <div class="list">
+                     <b>
+                       <img src="" />
+                     </b>
+                     <i>
+                       <p>产品名称</p>
+                       <p class="num">数量</p>
+                     </i>
+                  </div>
+                  <div class="bot">
+                    <b class="price">¥16</b>
+                    <i class="data">2018-03-28</i>
+                  </div>
+               </div>
+               <div class="order-con">
+                  <div class="title">
+                     <b class="num">WS19992002300222</b>
+                     <i class="look">确认收货</i>
+                  </div>
+                  <div class="list">
+                     <b>
+                       <img src="" />
+                     </b>
+                     <i>
+                       <p>产品名称</p>
+                       <p class="num">数量</p>
+                     </i>
+                  </div>
+                  <div class="bot">
+                    <b class="price">¥16</b>
+                    <i class="data">2018-03-28</i>
+                  </div>
+               </div>
+               <div class="order-con">
+                  <div class="title">
+                     <b class="num">WS19992002300222</b>
+                     <i class="look">确认收货</i>
+                  </div>
+                  <div class="list">
+                     <b>
+                       <img src="" />
+                     </b>
+                     <i>
+                       <p>产品名称</p>
+                       <p class="num">数量</p>
+                     </i>
+                  </div>
+                  <div class="bot">
+                    <b class="price">¥16</b>
+                    <i class="data">2018-03-28</i>
+                  </div>
+               </div>
+           </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+	</section>
+	<div class="body_footer">
+		<ul>
+			<li>
+				<a href="index.html">
+					<dl>
+						<dt><img alt="返回首页" src="images/icon_1.png"></dt>
+						<dd>返回首页</dd>
+					</dl>
+				</a>
+			</li>
+			
+		</ul>
+	</div>
+</div>
+<!-- jquery引入 -->
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/flexible.js"></script>
+<!-- weui引入 -->
+<script type="text/javascript" src="js/weui.js"></script>
+<!-- swiper引入 -->
+<script type="text/javascript" src="js/swiper.js"></script>
+<!-- 界面对应js -->
+<script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>

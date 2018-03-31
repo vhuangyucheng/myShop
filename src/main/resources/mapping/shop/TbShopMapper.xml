@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kooing.dao.shop.TbShopMapper">
+  <resultMap id="BaseResultMap" type="com.kooing.pojo.shop.TbShop">
+    <id column="store_id" jdbcType="BIGINT" property="storeId" />
+    <result column="uuid" jdbcType="CHAR" property="uuid" />
+    <result column="store_name" jdbcType="CHAR" property="storeName" />
+    <result column="grade_id" jdbcType="INTEGER" property="gradeId" />
+    <result column="member_id" jdbcType="INTEGER" property="memberId" />
+    <result column="member_name" jdbcType="CHAR" property="memberName" />
+    <result column="sc_id" jdbcType="INTEGER" property="scId" />
+    <result column="store_company_name" jdbcType="CHAR" property="storeCompanyName" />
+    <result column="store_address" jdbcType="VARCHAR" property="storeAddress" />
+    <result column="store_sort" jdbcType="INTEGER" property="storeSort" />
+    <result column="store_close_info" jdbcType="VARCHAR" property="storeCloseInfo" />
+    <result column="store_banner" jdbcType="CHAR" property="storeBanner" />
+    <result column="store_avatar" jdbcType="CHAR" property="storeAvatar" />
+    <result column="store_qq" jdbcType="CHAR" property="storeQq" />
+    <result column="store_wechat" jdbcType="CHAR" property="storeWechat" />
+    <result column="store_phone" jdbcType="CHAR" property="storePhone" />
+    <result column="store_keywords" jdbcType="CHAR" property="storeKeywords" />
+    <result column="store_description" jdbcType="CHAR" property="storeDescription" />
+    <result column="store_zip" jdbcType="CHAR" property="storeZip" />
+    <result column="store_register_time" jdbcType="TIMESTAMP" property="storeRegisterTime" />
+    <result column="store_end_time" jdbcType="TIMESTAMP" property="storeEndTime" />
+    <result column="store_label" jdbcType="CHAR" property="storeLabel" />
+    <result column="store_introduction" jdbcType="VARCHAR" property="storeIntroduction" />
+    <result column="store_domain" jdbcType="CHAR" property="storeDomain" />
+    <result column="store_domain_times" jdbcType="INTEGER" property="storeDomainTimes" />
+    <result column="store_theme" jdbcType="CHAR" property="storeTheme" />
+    <result column="store_credit" jdbcType="INTEGER" property="storeCredit" />
+    <result column="goods_number" jdbcType="INTEGER" property="goodsNumber" />
+    <result column="store_sales" jdbcType="INTEGER" property="storeSales" />
+    <result column="store_username" jdbcType="VARCHAR" property="storeUsername" />
+    <result column="store_password" jdbcType="VARCHAR" property="storePassword" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kooing.pojo.shop.TbShop">
+    <result column="store_zy" jdbcType="LONGVARCHAR" property="storeZy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    store_id, uuid, store_name, grade_id, member_id, member_name, sc_id, store_company_name, 
+    store_address, store_sort, store_close_info, store_banner, store_avatar, store_qq, 
+    store_wechat, store_phone, store_keywords, store_description, store_zip, store_register_time, 
+    store_end_time, store_label, store_introduction, store_domain, store_domain_times, 
+    store_theme, store_credit, goods_number, store_sales, store_username, store_password
+  </sql>
+  <sql id="Blob_Column_List">
+    store_zy
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_shop
+    where store_id = #{storeId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_shop
+    where store_id = #{storeId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.kooing.pojo.shop.TbShop">
+    insert into tb_shop (store_id, uuid, store_name, 
+      grade_id, member_id, member_name, 
+      sc_id, store_company_name, store_address, 
+      store_sort, store_close_info, store_banner, 
+      store_avatar, store_qq, store_wechat, 
+      store_phone, store_keywords, store_description, 
+      store_zip, store_register_time, store_end_time, 
+      store_label, store_introduction, store_domain, 
+      store_domain_times, store_theme, store_credit, 
+      goods_number, store_sales, store_username, 
+      store_password, store_zy)
+    values (#{storeId,jdbcType=BIGINT}, #{uuid,jdbcType=CHAR}, #{storeName,jdbcType=CHAR}, 
+      #{gradeId,jdbcType=INTEGER}, #{memberId,jdbcType=INTEGER}, #{memberName,jdbcType=CHAR}, 
+      #{scId,jdbcType=INTEGER}, #{storeCompanyName,jdbcType=CHAR}, #{storeAddress,jdbcType=VARCHAR}, 
+      #{storeSort,jdbcType=INTEGER}, #{storeCloseInfo,jdbcType=VARCHAR}, #{storeBanner,jdbcType=CHAR}, 
+      #{storeAvatar,jdbcType=CHAR}, #{storeQq,jdbcType=CHAR}, #{storeWechat,jdbcType=CHAR}, 
+      #{storePhone,jdbcType=CHAR}, #{storeKeywords,jdbcType=CHAR}, #{storeDescription,jdbcType=CHAR}, 
+      #{storeZip,jdbcType=CHAR}, #{storeRegisterTime,jdbcType=TIMESTAMP}, #{storeEndTime,jdbcType=TIMESTAMP}, 
+      #{storeLabel,jdbcType=CHAR}, #{storeIntroduction,jdbcType=VARCHAR}, #{storeDomain,jdbcType=CHAR}, 
+      #{storeDomainTimes,jdbcType=INTEGER}, #{storeTheme,jdbcType=CHAR}, #{storeCredit,jdbcType=INTEGER}, 
+      #{goodsNumber,jdbcType=INTEGER}, #{storeSales,jdbcType=INTEGER}, #{storeUsername,jdbcType=VARCHAR}, 
+      #{storePassword,jdbcType=VARCHAR}, #{storeZy,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kooing.pojo.shop.TbShop">
+    insert into tb_shop
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="storeName != null">
+        store_name,
+      </if>
+      <if test="gradeId != null">
+        grade_id,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="memberName != null">
+        member_name,
+      </if>
+      <if test="scId != null">
+        sc_id,
+      </if>
+      <if test="storeCompanyName != null">
+        store_company_name,
+      </if>
+      <if test="storeAddress != null">
+        store_address,
+      </if>
+      <if test="storeSort != null">
+        store_sort,
+      </if>
+      <if test="storeCloseInfo != null">
+        store_close_info,
+      </if>
+      <if test="storeBanner != null">
+        store_banner,
+      </if>
+      <if test="storeAvatar != null">
+        store_avatar,
+      </if>
+      <if test="storeQq != null">
+        store_qq,
+      </if>
+      <if test="storeWechat != null">
+        store_wechat,
+      </if>
+      <if test="storePhone != null">
+        store_phone,
+      </if>
+      <if test="storeKeywords != null">
+        store_keywords,
+      </if>
+      <if test="storeDescription != null">
+        store_description,
+      </if>
+      <if test="storeZip != null">
+        store_zip,
+      </if>
+      <if test="storeRegisterTime != null">
+        store_register_time,
+      </if>
+      <if test="storeEndTime != null">
+        store_end_time,
+      </if>
+      <if test="storeLabel != null">
+        store_label,
+      </if>
+      <if test="storeIntroduction != null">
+        store_introduction,
+      </if>
+      <if test="storeDomain != null">
+        store_domain,
+      </if>
+      <if test="storeDomainTimes != null">
+        store_domain_times,
+      </if>
+      <if test="storeTheme != null">
+        store_theme,
+      </if>
+      <if test="storeCredit != null">
+        store_credit,
+      </if>
+      <if test="goodsNumber != null">
+        goods_number,
+      </if>
+      <if test="storeSales != null">
+        store_sales,
+      </if>
+      <if test="storeUsername != null">
+        store_username,
+      </if>
+      <if test="storePassword != null">
+        store_password,
+      </if>
+      <if test="storeZy != null">
+        store_zy,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="storeId != null">
+        #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=CHAR},
+      </if>
+      <if test="storeName != null">
+        #{storeName,jdbcType=CHAR},
+      </if>
+      <if test="gradeId != null">
+        #{gradeId,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="memberName != null">
+        #{memberName,jdbcType=CHAR},
+      </if>
+      <if test="scId != null">
+        #{scId,jdbcType=INTEGER},
+      </if>
+      <if test="storeCompanyName != null">
+        #{storeCompanyName,jdbcType=CHAR},
+      </if>
+      <if test="storeAddress != null">
+        #{storeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="storeSort != null">
+        #{storeSort,jdbcType=INTEGER},
+      </if>
+      <if test="storeCloseInfo != null">
+        #{storeCloseInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="storeBanner != null">
+        #{storeBanner,jdbcType=CHAR},
+      </if>
+      <if test="storeAvatar != null">
+        #{storeAvatar,jdbcType=CHAR},
+      </if>
+      <if test="storeQq != null">
+        #{storeQq,jdbcType=CHAR},
+      </if>
+      <if test="storeWechat != null">
+        #{storeWechat,jdbcType=CHAR},
+      </if>
+      <if test="storePhone != null">
+        #{storePhone,jdbcType=CHAR},
+      </if>
+      <if test="storeKeywords != null">
+        #{storeKeywords,jdbcType=CHAR},
+      </if>
+      <if test="storeDescription != null">
+        #{storeDescription,jdbcType=CHAR},
+      </if>
+      <if test="storeZip != null">
+        #{storeZip,jdbcType=CHAR},
+      </if>
+      <if test="storeRegisterTime != null">
+        #{storeRegisterTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storeEndTime != null">
+        #{storeEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storeLabel != null">
+        #{storeLabel,jdbcType=CHAR},
+      </if>
+      <if test="storeIntroduction != null">
+        #{storeIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="storeDomain != null">
+        #{storeDomain,jdbcType=CHAR},
+      </if>
+      <if test="storeDomainTimes != null">
+        #{storeDomainTimes,jdbcType=INTEGER},
+      </if>
+      <if test="storeTheme != null">
+        #{storeTheme,jdbcType=CHAR},
+      </if>
+      <if test="storeCredit != null">
+        #{storeCredit,jdbcType=INTEGER},
+      </if>
+      <if test="goodsNumber != null">
+        #{goodsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="storeSales != null">
+        #{storeSales,jdbcType=INTEGER},
+      </if>
+      <if test="storeUsername != null">
+        #{storeUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="storePassword != null">
+        #{storePassword,jdbcType=VARCHAR},
+      </if>
+      <if test="storeZy != null">
+        #{storeZy,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kooing.pojo.shop.TbShop">
+    update tb_shop
+    <set>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=CHAR},
+      </if>
+      <if test="storeName != null">
+        store_name = #{storeName,jdbcType=CHAR},
+      </if>
+      <if test="gradeId != null">
+        grade_id = #{gradeId,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="memberName != null">
+        member_name = #{memberName,jdbcType=CHAR},
+      </if>
+      <if test="scId != null">
+        sc_id = #{scId,jdbcType=INTEGER},
+      </if>
+      <if test="storeCompanyName != null">
+        store_company_name = #{storeCompanyName,jdbcType=CHAR},
+      </if>
+      <if test="storeAddress != null">
+        store_address = #{storeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="storeSort != null">
+        store_sort = #{storeSort,jdbcType=INTEGER},
+      </if>
+      <if test="storeCloseInfo != null">
+        store_close_info = #{storeCloseInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="storeBanner != null">
+        store_banner = #{storeBanner,jdbcType=CHAR},
+      </if>
+      <if test="storeAvatar != null">
+        store_avatar = #{storeAvatar,jdbcType=CHAR},
+      </if>
+      <if test="storeQq != null">
+        store_qq = #{storeQq,jdbcType=CHAR},
+      </if>
+      <if test="storeWechat != null">
+        store_wechat = #{storeWechat,jdbcType=CHAR},
+      </if>
+      <if test="storePhone != null">
+        store_phone = #{storePhone,jdbcType=CHAR},
+      </if>
+      <if test="storeKeywords != null">
+        store_keywords = #{storeKeywords,jdbcType=CHAR},
+      </if>
+      <if test="storeDescription != null">
+        store_description = #{storeDescription,jdbcType=CHAR},
+      </if>
+      <if test="storeZip != null">
+        store_zip = #{storeZip,jdbcType=CHAR},
+      </if>
+      <if test="storeRegisterTime != null">
+        store_register_time = #{storeRegisterTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storeEndTime != null">
+        store_end_time = #{storeEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storeLabel != null">
+        store_label = #{storeLabel,jdbcType=CHAR},
+      </if>
+      <if test="storeIntroduction != null">
+        store_introduction = #{storeIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="storeDomain != null">
+        store_domain = #{storeDomain,jdbcType=CHAR},
+      </if>
+      <if test="storeDomainTimes != null">
+        store_domain_times = #{storeDomainTimes,jdbcType=INTEGER},
+      </if>
+      <if test="storeTheme != null">
+        store_theme = #{storeTheme,jdbcType=CHAR},
+      </if>
+      <if test="storeCredit != null">
+        store_credit = #{storeCredit,jdbcType=INTEGER},
+      </if>
+      <if test="goodsNumber != null">
+        goods_number = #{goodsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="storeSales != null">
+        store_sales = #{storeSales,jdbcType=INTEGER},
+      </if>
+      <if test="storeUsername != null">
+        store_username = #{storeUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="storePassword != null">
+        store_password = #{storePassword,jdbcType=VARCHAR},
+      </if>
+      <if test="storeZy != null">
+        store_zy = #{storeZy,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where store_id = #{storeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.kooing.pojo.shop.TbShop">
+    update tb_shop
+    set uuid = #{uuid,jdbcType=CHAR},
+      store_name = #{storeName,jdbcType=CHAR},
+      grade_id = #{gradeId,jdbcType=INTEGER},
+      member_id = #{memberId,jdbcType=INTEGER},
+      member_name = #{memberName,jdbcType=CHAR},
+      sc_id = #{scId,jdbcType=INTEGER},
+      store_company_name = #{storeCompanyName,jdbcType=CHAR},
+      store_address = #{storeAddress,jdbcType=VARCHAR},
+      store_sort = #{storeSort,jdbcType=INTEGER},
+      store_close_info = #{storeCloseInfo,jdbcType=VARCHAR},
+      store_banner = #{storeBanner,jdbcType=CHAR},
+      store_avatar = #{storeAvatar,jdbcType=CHAR},
+      store_qq = #{storeQq,jdbcType=CHAR},
+      store_wechat = #{storeWechat,jdbcType=CHAR},
+      store_phone = #{storePhone,jdbcType=CHAR},
+      store_keywords = #{storeKeywords,jdbcType=CHAR},
+      store_description = #{storeDescription,jdbcType=CHAR},
+      store_zip = #{storeZip,jdbcType=CHAR},
+      store_register_time = #{storeRegisterTime,jdbcType=TIMESTAMP},
+      store_end_time = #{storeEndTime,jdbcType=TIMESTAMP},
+      store_label = #{storeLabel,jdbcType=CHAR},
+      store_introduction = #{storeIntroduction,jdbcType=VARCHAR},
+      store_domain = #{storeDomain,jdbcType=CHAR},
+      store_domain_times = #{storeDomainTimes,jdbcType=INTEGER},
+      store_theme = #{storeTheme,jdbcType=CHAR},
+      store_credit = #{storeCredit,jdbcType=INTEGER},
+      goods_number = #{goodsNumber,jdbcType=INTEGER},
+      store_sales = #{storeSales,jdbcType=INTEGER},
+      store_username = #{storeUsername,jdbcType=VARCHAR},
+      store_password = #{storePassword,jdbcType=VARCHAR},
+      store_zy = #{storeZy,jdbcType=LONGVARCHAR}
+    where store_id = #{storeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kooing.pojo.shop.TbShop">
+    update tb_shop
+    set uuid = #{uuid,jdbcType=CHAR},
+      store_name = #{storeName,jdbcType=CHAR},
+      grade_id = #{gradeId,jdbcType=INTEGER},
+      member_id = #{memberId,jdbcType=INTEGER},
+      member_name = #{memberName,jdbcType=CHAR},
+      sc_id = #{scId,jdbcType=INTEGER},
+      store_company_name = #{storeCompanyName,jdbcType=CHAR},
+      store_address = #{storeAddress,jdbcType=VARCHAR},
+      store_sort = #{storeSort,jdbcType=INTEGER},
+      store_close_info = #{storeCloseInfo,jdbcType=VARCHAR},
+      store_banner = #{storeBanner,jdbcType=CHAR},
+      store_avatar = #{storeAvatar,jdbcType=CHAR},
+      store_qq = #{storeQq,jdbcType=CHAR},
+      store_wechat = #{storeWechat,jdbcType=CHAR},
+      store_phone = #{storePhone,jdbcType=CHAR},
+      store_keywords = #{storeKeywords,jdbcType=CHAR},
+      store_description = #{storeDescription,jdbcType=CHAR},
+      store_zip = #{storeZip,jdbcType=CHAR},
+      store_register_time = #{storeRegisterTime,jdbcType=TIMESTAMP},
+      store_end_time = #{storeEndTime,jdbcType=TIMESTAMP},
+      store_label = #{storeLabel,jdbcType=CHAR},
+      store_introduction = #{storeIntroduction,jdbcType=VARCHAR},
+      store_domain = #{storeDomain,jdbcType=CHAR},
+      store_domain_times = #{storeDomainTimes,jdbcType=INTEGER},
+      store_theme = #{storeTheme,jdbcType=CHAR},
+      store_credit = #{storeCredit,jdbcType=INTEGER},
+      goods_number = #{goodsNumber,jdbcType=INTEGER},
+      store_sales = #{storeSales,jdbcType=INTEGER},
+      store_username = #{storeUsername,jdbcType=VARCHAR},
+      store_password = #{storePassword,jdbcType=VARCHAR}
+    where store_id = #{storeId,jdbcType=BIGINT}
+  </update>
+  <select id="findShop" parameterType="com.kooing.pojo.shop.TbShop" resultMap="BaseResultMap">
+    SELECT store_name,store_id,store_address,store_avatar,store_introduction,store_sales
+    from tb_shop
+    <where>
+      <if test="gradeId != null">
+        grade_id = 1
+      </if>
+    </where>
+  </select>
+  <select id="checkShop" parameterType="com.kooing.pojo.shop.TbShop" resultMap="BaseResultMap">
+    SELECT store_name,store_id,store_address,store_avatar,store_introduction,store_sales
+    from tb_shop
+    <where>
+      <if test="storeUsername != null">
+        and store_username = #{storeUsername}
+      </if>
+      <if test="storePassword != null">
+        and store_password = #{storePassword}
+      </if>
+      <if test="storeId != null">
+        and store_id = #{storeId}
+      </if>
+    </where>
+  </select>
+  <select id="getShop" parameterType="com.kooing.pojo.shop.TbShop" resultMap="BaseResultMap">
+    SELECT store_name,store_id,store_address,store_avatar,store_introduction,store_sales,grade_id,store_username
+    from tb_shop
+    <where>
+      store_id = #{storeId}
+    </where>
+  </select>
+</mapper>

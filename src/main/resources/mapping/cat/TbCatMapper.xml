@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kooing.dao.cat.TbCatMapper">
+  <resultMap id="BaseResultMap" type="com.kooing.pojo.cat.TbCat">
+    <id column="cat_id" jdbcType="BIGINT" property="catId" />
+    <result column="uuid" jdbcType="CHAR" property="uuid" />
+    <result column="store_id" jdbcType="INTEGER" property="storeId" />
+    <result column="member_id" jdbcType="INTEGER" property="memberId" />
+    <result column="cat_sn" jdbcType="CHAR" property="catSn" />
+    <result column="cat_amout" jdbcType="DOUBLE" property="catAmout" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cat_id, uuid, store_id, member_Id, cat_sn, cat_amout
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_cat
+    where cat_id = #{catId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_cat
+    where cat_id = #{catId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.kooing.pojo.cat.TbCat">
+    insert into tb_cat (cat_id, uuid, store_id, 
+      member_Id, cat_sn, cat_amout
+      )
+    values (#{catId,jdbcType=BIGINT}, #{uuid,jdbcType=CHAR}, #{storeId,jdbcType=INTEGER}, 
+      #{memberId,jdbcType=INTEGER}, #{catSn,jdbcType=CHAR}, #{catAmout,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kooing.pojo.cat.TbCat">
+    insert into tb_cat
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="catId != null">
+        cat_id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="memberId != null">
+        member_Id,
+      </if>
+      <if test="catSn != null">
+        cat_sn,
+      </if>
+      <if test="catAmout != null">
+        cat_amout,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="catId != null">
+        #{catId,jdbcType=BIGINT},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=CHAR},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="catSn != null">
+        #{catSn,jdbcType=CHAR},
+      </if>
+      <if test="catAmout != null">
+        #{catAmout,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kooing.pojo.cat.TbCat">
+    update tb_cat
+    <set>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=CHAR},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null">
+        member_Id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="catSn != null">
+        cat_sn = #{catSn,jdbcType=CHAR},
+      </if>
+      <if test="catAmout != null">
+        cat_amout = #{catAmout,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where cat_id = #{catId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kooing.pojo.cat.TbCat">
+    update tb_cat
+    set uuid = #{uuid,jdbcType=CHAR},
+      store_id = #{storeId,jdbcType=INTEGER},
+      member_Id = #{memberId,jdbcType=INTEGER},
+      cat_sn = #{catSn,jdbcType=CHAR},
+      cat_amout = #{catAmout,jdbcType=DOUBLE}
+    where cat_id = #{catId,jdbcType=BIGINT}
+  </update>
+  <select id="getCat" parameterType="com.kooing.pojo.cat.TbCatItem" resultMap="BaseResultMap">
+    select*
+    from tb_cat
+    <where>
+      AND store_id = #{storeId}
+      AND member_id = #{memberId}
+    </where>
+  </select>
+</mapper>

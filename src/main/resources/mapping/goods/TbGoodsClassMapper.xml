@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kooing.dao.goods.TbGoodsClassMapper">
+  <resultMap id="BaseResultMap" type="com.kooing.param.response.goods.TbGoodsClassResponse">
+    <id column="gc_id" jdbcType="INTEGER" property="gcId" />
+    <result column="uuid" jdbcType="CHAR" property="uuid" />
+    <result column="gc_name" jdbcType="CHAR" property="gcName" />
+    <result column="gc_parent_id" jdbcType="INTEGER" property="gcParentId" />
+    <result column="store_id" jdbcType="INTEGER" property="storeId" />
+    <result column="goodsNum" jdbcType="INTEGER" property="goodsNum" />
+  </resultMap>
+  <resultMap id="BaseResultMap2" type="com.kooing.param.response.shop.ShopResponse">
+    <id column="gc_id" jdbcType="INTEGER" property="gcId" />
+    <result column="uuid" jdbcType="CHAR" property="uuid" />
+    <result column="gc_name" jdbcType="CHAR" property="gcName" />
+    <result column="gc_parent_id" jdbcType="INTEGER" property="gcParentId" />
+    <result column="store_id" jdbcType="INTEGER" property="storeId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    gc_id, uuid, gc_name, gc_parent_id, store_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_goods_class
+    where gc_id = #{gcId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_goods_class
+    where gc_id = #{gcId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kooing.pojo.goods.TbGoodsClass">
+    insert into tb_goods_class (gc_id, uuid, gc_name, 
+      gc_parent_id, store_id)
+    values (#{gcId,jdbcType=INTEGER}, #{uuid,jdbcType=CHAR}, #{gcName,jdbcType=CHAR}, 
+      #{gcParentId,jdbcType=INTEGER}, #{storeId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kooing.pojo.goods.TbGoodsClass">
+    insert into tb_goods_class
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gcId != null">
+        gc_id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="gcName != null">
+        gc_name,
+      </if>
+      <if test="gcParentId != null">
+        gc_parent_id,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gcId != null">
+        #{gcId,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=CHAR},
+      </if>
+      <if test="gcName != null">
+        #{gcName,jdbcType=CHAR},
+      </if>
+      <if test="gcParentId != null">
+        #{gcParentId,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kooing.pojo.goods.TbGoodsClass">
+    update tb_goods_class
+    <set>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=CHAR},
+      </if>
+      <if test="gcName != null">
+        gc_name = #{gcName,jdbcType=CHAR},
+      </if>
+      <if test="gcParentId != null">
+        gc_parent_id = #{gcParentId,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where gc_id = #{gcId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kooing.pojo.goods.TbGoodsClass">
+    update tb_goods_class
+    set uuid = #{uuid,jdbcType=CHAR},
+      gc_name = #{gcName,jdbcType=CHAR},
+      gc_parent_id = #{gcParentId,jdbcType=INTEGER},
+      store_id = #{storeId,jdbcType=INTEGER}
+    where gc_id = #{gcId,jdbcType=INTEGER}
+  </update>
+  <select id="getTbGoodsClassParentList"  resultMap="BaseResultMap">
+    SELECT
+	a.gc_id,a.gc_name,count(b.goods_id) goodsNum
+FROM
+	tb_goods_class a
+LEFT JOIN
+	tb_goods b ON a.gc_id = b.gc_id
+WHERE
+	a.gc_parent_id = 0
+	and a.store_id=#{storeId}
+GROUP BY
+	a.gc_id
+  </select>
+  <select id="getTbGoodsClassChildList"  resultMap="BaseResultMap">
+
+    SELECT
+    <include refid="Base_Column_List"/>
+    from tb_goods_class
+    <where>
+      AND gc_parent_id=#{gcId}
+      and store_id=#{storeId}
+    </where>
+  </select>
+  <select id="getTbGoodsClassParentList2"  resultMap="BaseResultMap2">
+    select
+    <include refid="Base_Column_List" />
+    from tb_goods_class
+    <where>
+      and gc_parent_id=0
+      and store_id=#{storeId}
+    </where>
+  </select>
+</mapper>

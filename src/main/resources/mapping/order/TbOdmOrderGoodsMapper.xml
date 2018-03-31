@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kooing.dao.order.TbOdmOrderGoodsMapper">
+  <resultMap id="BaseResultMap" type="com.kooing.param.response.order.OrderItemResponse">
+    <id column="rec_id" jdbcType="BIGINT" property="recId" />
+    <result column="uuid" jdbcType="CHAR" property="uuid" />
+    <result column="order_id" jdbcType="CHAR" property="orderId" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="goods_name" jdbcType="CHAR" property="goodsName" />
+    <result column="goods_price" jdbcType="DOUBLE" property="goodsPrice" />
+    <result column="goods_promotion_price" jdbcType="DOUBLE" property="goodsPromotionPrice" />
+    <result column="goods_num" jdbcType="INTEGER" property="goodsNum" />
+    <result column="store_id" jdbcType="INTEGER" property="storeId" />
+    <result column="buyer_id" jdbcType="INTEGER" property="buyerId" />
+    <result column="is_promotion" jdbcType="INTEGER" property="isPromotion" />
+    <result column="amout" jdbcType="INTEGER" property="ItemAmout" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    rec_id, uuid, order_id, goods_id, goods_name, goods_price, goods_promotion_price, 
+    goods_num, store_id, buyer_id, is_promotion
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_odm_order_goods
+    where rec_id = #{recId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_odm_order_goods
+    where rec_id = #{recId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.kooing.pojo.order.TbOdmOrderGoods">
+    insert into tb_odm_order_goods (rec_id, uuid, order_id, 
+      goods_id, goods_name, goods_price, 
+      goods_promotion_price, goods_num, store_id, 
+      buyer_id, is_promotion)
+    values (#{recId,jdbcType=BIGINT}, #{uuid,jdbcType=CHAR}, #{orderId,jdbcType=CHAR}, 
+      #{goodsId,jdbcType=INTEGER}, #{goodsName,jdbcType=CHAR}, #{goodsPrice,jdbcType=DOUBLE},
+      #{goodsPromotionPrice,jdbcType=DOUBLE}, #{goodsNum,jdbcType=INTEGER}, #{storeId,jdbcType=INTEGER},
+      #{buyerId,jdbcType=INTEGER}, #{isPromotion,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kooing.pojo.order.TbOdmOrderGoods">
+    insert into tb_odm_order_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recId != null">
+        rec_id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="goodsPrice != null">
+        goods_price,
+      </if>
+      <if test="goodsPromotionPrice != null">
+        goods_promotion_price,
+      </if>
+      <if test="goodsNum != null">
+        goods_num,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="buyerId != null">
+        buyer_id,
+      </if>
+      <if test="isPromotion != null">
+        is_promotion,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recId != null">
+        #{recId,jdbcType=BIGINT},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=CHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=CHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=CHAR},
+      </if>
+      <if test="goodsPrice != null">
+        #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsPromotionPrice != null">
+        #{goodsPromotionPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsNum != null">
+        #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="buyerId != null">
+        #{buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="isPromotion != null">
+        #{isPromotion,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kooing.pojo.order.TbOdmOrderGoods">
+    update tb_odm_order_goods
+    <set>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=CHAR},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=CHAR},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=CHAR},
+      </if>
+      <if test="goodsPrice != null">
+        goods_price = #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsPromotionPrice != null">
+        goods_promotion_price = #{goodsPromotionPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsNum != null">
+        goods_num = #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="buyerId != null">
+        buyer_id = #{buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="isPromotion != null">
+        is_promotion = #{isPromotion,jdbcType=INTEGER},
+      </if>
+    </set>
+    where rec_id = #{recId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kooing.pojo.order.TbOdmOrderGoods">
+    update tb_odm_order_goods
+    set uuid = #{uuid,jdbcType=CHAR},
+      order_id = #{orderId,jdbcType=CHAR},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=CHAR},
+      goods_price = #{goodsPrice,jdbcType=DOUBLE},
+      goods_promotion_price = #{goodsPromotionPrice,jdbcType=DOUBLE},
+      goods_num = #{goodsNum,jdbcType=INTEGER},
+      store_id = #{storeId,jdbcType=INTEGER},
+      buyer_id = #{buyerId,jdbcType=INTEGER},
+      is_promotion = #{isPromotion,jdbcType=INTEGER}
+    where rec_id = #{recId,jdbcType=BIGINT}
+  </update>
+  <select id="findGoodsItem" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT tb_goods.goods_price,tb_odm_order_goods.goods_num,tb_goods.goods_price*tb_odm_order_goods.goods_num amout,tb_goods.goods_name
+FROM
+	tb_goods,tb_odm_order_goods
+WHERE
+	1 and 1
+AND tb_goods.goods_id=tb_odm_order_goods.goods_id
+and tb_odm_order_goods.order_id=#{orderSn}
+  </select>
+  <delete id="deleteByOrderSn" parameterType="java.lang.String">
+    DELETE FROM  tb_odm_order_goods
+    <where>
+      and order_id=#{orderSn,jdbcType=CHAR}
+    </where>
+  </delete>
+  <update id="copyPrice" parameterType="java.lang.Integer">
+    UPDATE tb_odm_order_goods
+SET goods_price = (
+	SELECT
+		goods_price
+	FROM
+		tb_goods
+	WHERE
+		goods_id = #{goodsId}
+)
+where goods_id = #{goodsId}
+  </update>
+</mapper>

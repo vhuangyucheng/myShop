@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>top</title>
+    <script src="js/template-web.js"></script>
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/getShop/index.js"></script>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #mian {
+            height: 800px;
+            width: 100%;
+        }
+
+        .biao {
+            height: 100%;
+            width: 500px;
+            margin-left: 60px;
+            float: left;
+        }
+
+        .biao th {
+            color: red;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body  >
+<div id="main">
+    <div class="biao">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>资料项</th>
+                <th>你的资料</th>
+            </tr>
+            </thead>
+            <tbody class="myContent"></tbody>
+        </table>
+    </div>
+
+</div>
+</body>
+</html>
+
+<script id="test" type="text/html">
+    <tr>
+        <td>店铺名字</td>
+        <td>{{storeName}}</td>
+    </tr>
+    <tr>
+        <td>店铺地址</td>
+        <td>{{storeAddress}}</td>
+    </tr>
+    <tr>
+        <td>店铺介绍</td>
+        <td>{{storeIntroduction}}</td>
+    </tr>
+    <tr>
+        <td>店铺账号</td>
+        <td>{{storeUsername}}</td>
+    </tr>
+    <tr>
+        <td>店铺状态</td>
+        <td>{{gradeId | timestamp}}
+            {{if gradeId==0}}
+            <input name="" type="button" value="一键打烊"
+                                           onMouseMove="this.className='input_move'"
+                                           onMouseOut="this.className='input_out'"
+                                           onclick="openShop({{gradeId}})"></td>
+            {{/if}}
+            {{if gradeId==1}}
+            <input name="" type="button" value="一键开店"
+                   onMouseMove="this.className='input_move'"
+                   onMouseOut="this.className='input_out'"
+                   onclick="openShop({{gradeId}})"></td>
+            {{/if}}
+    </tr>
+
+</script>

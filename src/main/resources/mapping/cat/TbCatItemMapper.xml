@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kooing.dao.cat.TbCatItemMapper">
+  <resultMap id="BaseResultMap" type="com.kooing.pojo.cat.TbCatItem">
+    <id column="cat_rec_id" jdbcType="BIGINT" property="catRecId" />
+    <result column="uuid" jdbcType="CHAR" property="uuid" />
+    <result column="cat_sn" jdbcType="CHAR" property="catSn" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="goods_price" jdbcType="DOUBLE" property="goodsPrice" />
+    <result column="goods_promotion_price" jdbcType="DOUBLE" property="goodsPromotionPrice" />
+    <result column="goods_num" jdbcType="INTEGER" property="goodsNum" />
+    <result column="store_id" jdbcType="INTEGER" property="storeId" />
+    <result column="member_id" jdbcType="INTEGER" property="memberId" />
+    <result column="is_promotion" jdbcType="INTEGER" property="isPromotion" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cat_rec_id, uuid, cat_sn, goods_id, goods_price, goods_promotion_price, goods_num, 
+    store_id, member_id, is_promotion, goods_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_cat_item
+    where cat_rec_id = #{catRecId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_cat_item
+    where cat_rec_id = #{catRecId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.kooing.pojo.cat.TbCatItem">
+    insert into tb_cat_item (cat_rec_id, uuid, cat_sn, 
+      goods_id, goods_price, goods_promotion_price, 
+      goods_num, store_id, member_id, 
+      is_promotion, goods_name)
+    values (#{catRecId,jdbcType=BIGINT}, #{uuid,jdbcType=CHAR}, #{catSn,jdbcType=CHAR}, 
+      #{goodsId,jdbcType=INTEGER}, #{goodsPrice,jdbcType=DOUBLE}, #{goodsPromotionPrice,jdbcType=DOUBLE},
+      #{goodsNum,jdbcType=INTEGER}, #{storeId,jdbcType=INTEGER}, #{memberId,jdbcType=INTEGER}, 
+      #{isPromotion,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kooing.pojo.cat.TbCatItem">
+    insert into tb_cat_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="catRecId != null">
+        cat_rec_id,
+      </if>
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="catSn != null">
+        cat_sn,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="goodsPrice != null">
+        goods_price,
+      </if>
+      <if test="goodsPromotionPrice != null">
+        goods_promotion_price,
+      </if>
+      <if test="goodsNum != null">
+        goods_num,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="isPromotion != null">
+        is_promotion,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="catRecId != null">
+        #{catRecId,jdbcType=BIGINT},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=CHAR},
+      </if>
+      <if test="catSn != null">
+        #{catSn,jdbcType=CHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPrice != null">
+        #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsPromotionPrice != null">
+        #{goodsPromotionPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsNum != null">
+        #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="isPromotion != null">
+        #{isPromotion,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kooing.pojo.cat.TbCatItem">
+    update tb_cat_item
+    <set>
+      <if test="uuid != null">
+        uuid = #{uuid,jdbcType=CHAR},
+      </if>
+      <if test="catSn != null">
+        cat_sn = #{catSn,jdbcType=CHAR},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPrice != null">
+        goods_price = #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsPromotionPrice != null">
+        goods_promotion_price = #{goodsPromotionPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsNum != null">
+        goods_num = #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="isPromotion != null">
+        is_promotion = #{isPromotion,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cat_rec_id = #{catRecId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kooing.pojo.cat.TbCatItem">
+    update tb_cat_item
+    set uuid = #{uuid,jdbcType=CHAR},
+      cat_sn = #{catSn,jdbcType=CHAR},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_price = #{goodsPrice,jdbcType=DOUBLE},
+      goods_promotion_price = #{goodsPromotionPrice,jdbcType=DOUBLE},
+      goods_num = #{goodsNum,jdbcType=INTEGER},
+      store_id = #{storeId,jdbcType=INTEGER},
+      member_id = #{memberId,jdbcType=INTEGER},
+      is_promotion = #{isPromotion,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=VARCHAR}
+    where cat_rec_id = #{catRecId,jdbcType=BIGINT}
+  </update>
+  <select id="getCatItem"  resultMap="BaseResultMap">
+    select*
+    from tb_cat_item
+    <where>
+      AND tb_cat_item.goods_id = #{goodsId}
+      AND tb_cat_item.cat_sn = #{catSn}
+    </where>
+  </select>
+  <select id="findCatItem" parameterType="com.kooing.pojo.cat.TbCatItem" resultMap="BaseResultMap">
+    select 	tb_goods.goods_id,
+    tb_goods.goods_name,
+    tb_cat_item.goods_num,
+    tb_goods.goods_price,
+    tb_cat_item.goods_num * tb_goods.goods_price ItemAmout
+    from tb_cat_item,
+    tb_goods,
+    tb_cat
+    <where>
+      AND tb_cat.store_id = #{storeId}
+      AND tb_cat.member_id = #{memberId}
+      AND tb_cat.cat_sn = tb_cat_item.cat_sn
+      AND tb_cat_item.goods_id = tb_goods.goods_id
+    </where>
+  </select>
+  <select id="getAmout" parameterType="com.kooing.pojo.cat.TbCatItem" resultType="java.lang.Double">
+    select 	sum(
+    tb_cat_item.goods_num * tb_goods.goods_price
+    )
+    amout
+    from tb_cat_item,
+    tb_goods,
+    tb_cat
+    <where>
+      AND tb_cat.store_id = #{storeId}
+      AND tb_cat.member_id = #{memberId}
+      AND tb_cat.cat_sn = tb_cat_item.cat_sn
+      AND tb_cat_item.goods_id = tb_goods.goods_id
+    </where>
+  </select>
+  <delete id="emptyCatItem" parameterType="com.kooing.pojo.cat.TbCatItem">
+        DELETE tb_cat_item
+    FROM
+        tb_cat,tb_cat_item
+    WHERE
+        tb_cat.store_id = #{storeId}
+    AND tb_cat.member_id = #{memberId}
+    AND tb_cat.cat_sn = tb_cat_item.cat_sn
+  </delete>
+</mapper>

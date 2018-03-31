@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kooing.dao.member.TbUrsMemberMapper">
+    <resultMap id="BaseResultMap" type="com.kooing.pojo.member.TbUrsMember">
+        <id column="member_id" jdbcType="BIGINT" property="memberId"/>
+        <result column="uuid" jdbcType="CHAR" property="uuid"/>
+        <result column="member_name" jdbcType="CHAR" property="memberName"/>
+        <result column="member_truename" jdbcType="CHAR" property="memberTruename"/>
+        <result column="member_avatar" jdbcType="CHAR" property="memberAvatar"/>
+        <result column="member_sex" jdbcType="INTEGER" property="memberSex"/>
+        <result column="idcard" jdbcType="CHAR" property="idcard"/>
+        <result column="member_birthday" jdbcType="DATE" property="memberBirthday"/>
+        <result column="member_password" jdbcType="CHAR" property="memberPassword"/>
+        <result column="member_pay_password" jdbcType="CHAR" property="memberPayPassword"/>
+        <result column="member_email" jdbcType="CHAR" property="memberEmail"/>
+        <result column="member_email_bind" jdbcType="INTEGER" property="memberEmailBind"/>
+        <result column="member_mobile" jdbcType="CHAR" property="memberMobile"/>
+        <result column="member_mobile_bind" jdbcType="INTEGER" property="memberMobileBind"/>
+        <result column="member_qq" jdbcType="CHAR" property="memberQq"/>
+        <result column="member_login_num" jdbcType="INTEGER" property="memberLoginNum"/>
+        <result column="member_register_time" jdbcType="TIMESTAMP" property="memberRegisterTime"/>
+        <result column="member_login_time" jdbcType="TIMESTAMP" property="memberLoginTime"/>
+        <result column="member_old_login_time" jdbcType="TIMESTAMP" property="memberOldLoginTime"/>
+        <result column="member_login_ip" jdbcType="CHAR" property="memberLoginIp"/>
+        <result column="member_exit_time" jdbcType="TIMESTAMP" property="memberExitTime"/>
+        <result column="member_wechat_openid" jdbcType="VARCHAR" property="memberWechatOpenid"/>
+        <result column="member_points" jdbcType="INTEGER" property="memberPoints"/>
+        <result column="member_areaid" jdbcType="INTEGER" property="memberAreaid"/>
+        <result column="member_cityid" jdbcType="INTEGER" property="memberCityid"/>
+        <result column="member_provinceid" jdbcType="INTEGER" property="memberProvinceid"/>
+        <result column="member_exppoints" jdbcType="INTEGER" property="memberExppoints"/>
+        <result column="member_grade" jdbcType="INTEGER" property="memberGrade"/>
+        <result column="store_id" jdbcType="INTEGER" property="storeId"/>
+        <result column="clientid" jdbcType="VARCHAR" property="clientid"/>
+        <result column="idcard_front" jdbcType="CHAR" property="idcardFront"/>
+        <result column="idcard_back" jdbcType="CHAR" property="idcardBack"/>
+        <result column="idcard_hand_license" jdbcType="CHAR" property="idcardHandLicense"/>
+        <result column="member_address" jdbcType="VARCHAR" property="memberAddress"/>
+        <result column="member_virtual" jdbcType="INTEGER" property="memberVirtual"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.kooing.pojo.member.TbUrsMember">
+        <result column="member_wechat_info" jdbcType="LONGVARCHAR" property="memberWechatInfo"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    member_id, uuid, member_name, member_truename, member_avatar, member_sex, idcard, 
+    member_birthday, member_password, member_pay_password, member_email, member_email_bind, 
+    member_mobile, member_mobile_bind, member_qq, member_login_num, member_register_time, 
+    member_login_time, member_old_login_time, member_login_ip, member_exit_time, member_wechat_openid, 
+    member_points, member_areaid, member_cityid, member_provinceid, member_exppoints, 
+    member_grade, store_id, clientid, idcard_front, idcard_back, idcard_hand_license, 
+    member_address, member_virtual
+  </sql>
+    <sql id="Blob_Column_List">
+    member_wechat_info
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from tb_urs_member
+        where member_id = #{memberId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_urs_member
+    where member_id = #{memberId,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.kooing.pojo.member.TbUrsMember">
+    insert into tb_urs_member (member_id, uuid, member_name, 
+      member_truename, member_avatar, member_sex, 
+      idcard, member_birthday, member_password, 
+      member_pay_password, member_email, member_email_bind, 
+      member_mobile, member_mobile_bind, member_qq, 
+      member_login_num, member_register_time, member_login_time, 
+      member_old_login_time, member_login_ip, member_exit_time, 
+      member_wechat_openid, member_points, member_areaid, 
+      member_cityid, member_provinceid, member_exppoints, 
+      member_grade, store_id, clientid, 
+      idcard_front, idcard_back, idcard_hand_license, 
+      member_address, member_virtual, member_wechat_info
+      )
+    values (#{memberId,jdbcType=BIGINT}, #{uuid,jdbcType=CHAR}, #{memberName,jdbcType=CHAR}, 
+      #{memberTruename,jdbcType=CHAR}, #{memberAvatar,jdbcType=CHAR}, #{memberSex,jdbcType=INTEGER}, 
+      #{idcard,jdbcType=CHAR}, #{memberBirthday,jdbcType=DATE}, #{memberPassword,jdbcType=CHAR}, 
+      #{memberPayPassword,jdbcType=CHAR}, #{memberEmail,jdbcType=CHAR}, #{memberEmailBind,jdbcType=INTEGER}, 
+      #{memberMobile,jdbcType=CHAR}, #{memberMobileBind,jdbcType=INTEGER}, #{memberQq,jdbcType=CHAR}, 
+      #{memberLoginNum,jdbcType=INTEGER}, #{memberRegisterTime,jdbcType=TIMESTAMP}, #{memberLoginTime,jdbcType=TIMESTAMP}, 
+      #{memberOldLoginTime,jdbcType=TIMESTAMP}, #{memberLoginIp,jdbcType=CHAR}, #{memberExitTime,jdbcType=TIMESTAMP}, 
+      #{memberWechatOpenid,jdbcType=VARCHAR}, #{memberPoints,jdbcType=INTEGER}, #{memberAreaid,jdbcType=INTEGER}, 
+      #{memberCityid,jdbcType=INTEGER}, #{memberProvinceid,jdbcType=INTEGER}, #{memberExppoints,jdbcType=INTEGER}, 
+      #{memberGrade,jdbcType=INTEGER}, #{storeId,jdbcType=INTEGER}, #{clientid,jdbcType=VARCHAR}, 
+      #{idcardFront,jdbcType=CHAR}, #{idcardBack,jdbcType=CHAR}, #{idcardHandLicense,jdbcType=CHAR}, 
+      #{memberAddress,jdbcType=VARCHAR}, #{memberVirtual,jdbcType=INTEGER}, #{memberWechatInfo,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.kooing.pojo.member.TbUrsMember">
+        insert into tb_urs_member
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="memberId != null">
+                member_id,
+            </if>
+            <if test="uuid != null">
+                uuid,
+            </if>
+            <if test="memberName != null">
+                member_name,
+            </if>
+            <if test="memberTruename != null">
+                member_truename,
+            </if>
+            <if test="memberAvatar != null">
+                member_avatar,
+            </if>
+            <if test="memberSex != null">
+                member_sex,
+            </if>
+            <if test="idcard != null">
+                idcard,
+            </if>
+            <if test="memberBirthday != null">
+                member_birthday,
+            </if>
+            <if test="memberPassword != null">
+                member_password,
+            </if>
+            <if test="memberPayPassword != null">
+                member_pay_password,
+            </if>
+            <if test="memberEmail != null">
+                member_email,
+            </if>
+            <if test="memberEmailBind != null">
+                member_email_bind,
+            </if>
+            <if test="memberMobile != null">
+                member_mobile,
+            </if>
+            <if test="memberMobileBind != null">
+                member_mobile_bind,
+            </if>
+            <if test="memberQq != null">
+                member_qq,
+            </if>
+            <if test="memberLoginNum != null">
+                member_login_num,
+            </if>
+            <if test="memberRegisterTime != null">
+                member_register_time,
+            </if>
+            <if test="memberLoginTime != null">
+                member_login_time,
+            </if>
+            <if test="memberOldLoginTime != null">
+                member_old_login_time,
+            </if>
+            <if test="memberLoginIp != null">
+                member_login_ip,
+            </if>
+            <if test="memberExitTime != null">
+                member_exit_time,
+            </if>
+            <if test="memberWechatOpenid != null">
+                member_wechat_openid,
+            </if>
+            <if test="memberPoints != null">
+                member_points,
+            </if>
+            <if test="memberAreaid != null">
+                member_areaid,
+            </if>
+            <if test="memberCityid != null">
+                member_cityid,
+            </if>
+            <if test="memberProvinceid != null">
+                member_provinceid,
+            </if>
+            <if test="memberExppoints != null">
+                member_exppoints,
+            </if>
+            <if test="memberGrade != null">
+                member_grade,
+            </if>
+            <if test="storeId != null">
+                store_id,
+            </if>
+            <if test="clientid != null">
+                clientid,
+            </if>
+            <if test="idcardFront != null">
+                idcard_front,
+            </if>
+            <if test="idcardBack != null">
+                idcard_back,
+            </if>
+            <if test="idcardHandLicense != null">
+                idcard_hand_license,
+            </if>
+            <if test="memberAddress != null">
+                member_address,
+            </if>
+            <if test="memberVirtual != null">
+                member_virtual,
+            </if>
+            <if test="memberWechatInfo != null">
+                member_wechat_info,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="memberId != null">
+                #{memberId,jdbcType=BIGINT},
+            </if>
+            <if test="uuid != null">
+                #{uuid,jdbcType=CHAR},
+            </if>
+            <if test="memberName != null">
+                #{memberName,jdbcType=CHAR},
+            </if>
+            <if test="memberTruename != null">
+                #{memberTruename,jdbcType=CHAR},
+            </if>
+            <if test="memberAvatar != null">
+                #{memberAvatar,jdbcType=CHAR},
+            </if>
+            <if test="memberSex != null">
+                #{memberSex,jdbcType=INTEGER},
+            </if>
+            <if test="idcard != null">
+                #{idcard,jdbcType=CHAR},
+            </if>
+            <if test="memberBirthday != null">
+                #{memberBirthday,jdbcType=DATE},
+            </if>
+            <if test="memberPassword != null">
+                #{memberPassword,jdbcType=CHAR},
+            </if>
+            <if test="memberPayPassword != null">
+                #{memberPayPassword,jdbcType=CHAR},
+            </if>
+            <if test="memberEmail != null">
+                #{memberEmail,jdbcType=CHAR},
+            </if>
+            <if test="memberEmailBind != null">
+                #{memberEmailBind,jdbcType=INTEGER},
+            </if>
+            <if test="memberMobile != null">
+                #{memberMobile,jdbcType=CHAR},
+            </if>
+            <if test="memberMobileBind != null">
+                #{memberMobileBind,jdbcType=INTEGER},
+            </if>
+            <if test="memberQq != null">
+                #{memberQq,jdbcType=CHAR},
+            </if>
+            <if test="memberLoginNum != null">
+                #{memberLoginNum,jdbcType=INTEGER},
+            </if>
+            <if test="memberRegisterTime != null">
+                #{memberRegisterTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memberLoginTime != null">
+                #{memberLoginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memberOldLoginTime != null">
+                #{memberOldLoginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memberLoginIp != null">
+                #{memberLoginIp,jdbcType=CHAR},
+            </if>
+            <if test="memberExitTime != null">
+                #{memberExitTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memberWechatOpenid != null">
+                #{memberWechatOpenid,jdbcType=VARCHAR},
+            </if>
+            <if test="memberPoints != null">
+                #{memberPoints,jdbcType=INTEGER},
+            </if>
+            <if test="memberAreaid != null">
+                #{memberAreaid,jdbcType=INTEGER},
+            </if>
+            <if test="memberCityid != null">
+                #{memberCityid,jdbcType=INTEGER},
+            </if>
+            <if test="memberProvinceid != null">
+                #{memberProvinceid,jdbcType=INTEGER},
+            </if>
+            <if test="memberExppoints != null">
+                #{memberExppoints,jdbcType=INTEGER},
+            </if>
+            <if test="memberGrade != null">
+                #{memberGrade,jdbcType=INTEGER},
+            </if>
+            <if test="storeId != null">
+                #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="clientid != null">
+                #{clientid,jdbcType=VARCHAR},
+            </if>
+            <if test="idcardFront != null">
+                #{idcardFront,jdbcType=CHAR},
+            </if>
+            <if test="idcardBack != null">
+                #{idcardBack,jdbcType=CHAR},
+            </if>
+            <if test="idcardHandLicense != null">
+                #{idcardHandLicense,jdbcType=CHAR},
+            </if>
+            <if test="memberAddress != null">
+                #{memberAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="memberVirtual != null">
+                #{memberVirtual,jdbcType=INTEGER},
+            </if>
+            <if test="memberWechatInfo != null">
+                #{memberWechatInfo,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.kooing.pojo.member.TbUrsMember">
+        update tb_urs_member
+        <set>
+            <if test="uuid != null">
+                uuid = #{uuid,jdbcType=CHAR},
+            </if>
+            <if test="memberName != null">
+                member_name = #{memberName,jdbcType=CHAR},
+            </if>
+            <if test="memberTruename != null">
+                member_truename = #{memberTruename,jdbcType=CHAR},
+            </if>
+            <if test="memberAvatar != null">
+                member_avatar = #{memberAvatar,jdbcType=CHAR},
+            </if>
+            <if test="memberSex != null">
+                member_sex = #{memberSex,jdbcType=INTEGER},
+            </if>
+            <if test="idcard != null">
+                idcard = #{idcard,jdbcType=CHAR},
+            </if>
+            <if test="memberBirthday != null">
+                member_birthday = #{memberBirthday,jdbcType=DATE},
+            </if>
+            <if test="memberPassword != null">
+                member_password = #{memberPassword,jdbcType=CHAR},
+            </if>
+            <if test="memberPayPassword != null">
+                member_pay_password = #{memberPayPassword,jdbcType=CHAR},
+            </if>
+            <if test="memberEmail != null">
+                member_email = #{memberEmail,jdbcType=CHAR},
+            </if>
+            <if test="memberEmailBind != null">
+                member_email_bind = #{memberEmailBind,jdbcType=INTEGER},
+            </if>
+            <if test="memberMobile != null">
+                member_mobile = #{memberMobile,jdbcType=CHAR},
+            </if>
+            <if test="memberMobileBind != null">
+                member_mobile_bind = #{memberMobileBind,jdbcType=INTEGER},
+            </if>
+            <if test="memberQq != null">
+                member_qq = #{memberQq,jdbcType=CHAR},
+            </if>
+            <if test="memberLoginNum != null">
+                member_login_num = #{memberLoginNum,jdbcType=INTEGER},
+            </if>
+            <if test="memberRegisterTime != null">
+                member_register_time = #{memberRegisterTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memberLoginTime != null">
+                member_login_time = #{memberLoginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memberOldLoginTime != null">
+                member_old_login_time = #{memberOldLoginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memberLoginIp != null">
+                member_login_ip = #{memberLoginIp,jdbcType=CHAR},
+            </if>
+            <if test="memberExitTime != null">
+                member_exit_time = #{memberExitTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memberWechatOpenid != null">
+                member_wechat_openid = #{memberWechatOpenid,jdbcType=VARCHAR},
+            </if>
+            <if test="memberPoints != null">
+                member_points = #{memberPoints,jdbcType=INTEGER},
+            </if>
+            <if test="memberAreaid != null">
+                member_areaid = #{memberAreaid,jdbcType=INTEGER},
+            </if>
+            <if test="memberCityid != null">
+                member_cityid = #{memberCityid,jdbcType=INTEGER},
+            </if>
+            <if test="memberProvinceid != null">
+                member_provinceid = #{memberProvinceid,jdbcType=INTEGER},
+            </if>
+            <if test="memberExppoints != null">
+                member_exppoints = #{memberExppoints,jdbcType=INTEGER},
+            </if>
+            <if test="memberGrade != null">
+                member_grade = #{memberGrade,jdbcType=INTEGER},
+            </if>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="clientid != null">
+                clientid = #{clientid,jdbcType=VARCHAR},
+            </if>
+            <if test="idcardFront != null">
+                idcard_front = #{idcardFront,jdbcType=CHAR},
+            </if>
+            <if test="idcardBack != null">
+                idcard_back = #{idcardBack,jdbcType=CHAR},
+            </if>
+            <if test="idcardHandLicense != null">
+                idcard_hand_license = #{idcardHandLicense,jdbcType=CHAR},
+            </if>
+            <if test="memberAddress != null">
+                member_address = #{memberAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="memberVirtual != null">
+                member_virtual = #{memberVirtual,jdbcType=INTEGER},
+            </if>
+            <if test="memberWechatInfo != null">
+                member_wechat_info = #{memberWechatInfo,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where member_id = #{memberId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.kooing.pojo.member.TbUrsMember">
+    update tb_urs_member
+    set uuid = #{uuid,jdbcType=CHAR},
+      member_name = #{memberName,jdbcType=CHAR},
+      member_truename = #{memberTruename,jdbcType=CHAR},
+      member_avatar = #{memberAvatar,jdbcType=CHAR},
+      member_sex = #{memberSex,jdbcType=INTEGER},
+      idcard = #{idcard,jdbcType=CHAR},
+      member_birthday = #{memberBirthday,jdbcType=DATE},
+      member_password = #{memberPassword,jdbcType=CHAR},
+      member_pay_password = #{memberPayPassword,jdbcType=CHAR},
+      member_email = #{memberEmail,jdbcType=CHAR},
+      member_email_bind = #{memberEmailBind,jdbcType=INTEGER},
+      member_mobile = #{memberMobile,jdbcType=CHAR},
+      member_mobile_bind = #{memberMobileBind,jdbcType=INTEGER},
+      member_qq = #{memberQq,jdbcType=CHAR},
+      member_login_num = #{memberLoginNum,jdbcType=INTEGER},
+      member_register_time = #{memberRegisterTime,jdbcType=TIMESTAMP},
+      member_login_time = #{memberLoginTime,jdbcType=TIMESTAMP},
+      member_old_login_time = #{memberOldLoginTime,jdbcType=TIMESTAMP},
+      member_login_ip = #{memberLoginIp,jdbcType=CHAR},
+      member_exit_time = #{memberExitTime,jdbcType=TIMESTAMP},
+      member_wechat_openid = #{memberWechatOpenid,jdbcType=VARCHAR},
+      member_points = #{memberPoints,jdbcType=INTEGER},
+      member_areaid = #{memberAreaid,jdbcType=INTEGER},
+      member_cityid = #{memberCityid,jdbcType=INTEGER},
+      member_provinceid = #{memberProvinceid,jdbcType=INTEGER},
+      member_exppoints = #{memberExppoints,jdbcType=INTEGER},
+      member_grade = #{memberGrade,jdbcType=INTEGER},
+      store_id = #{storeId,jdbcType=INTEGER},
+      clientid = #{clientid,jdbcType=VARCHAR},
+      idcard_front = #{idcardFront,jdbcType=CHAR},
+      idcard_back = #{idcardBack,jdbcType=CHAR},
+      idcard_hand_license = #{idcardHandLicense,jdbcType=CHAR},
+      member_address = #{memberAddress,jdbcType=VARCHAR},
+      member_virtual = #{memberVirtual,jdbcType=INTEGER},
+      member_wechat_info = #{memberWechatInfo,jdbcType=LONGVARCHAR}
+    where member_id = #{memberId,jdbcType=BIGINT}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="com.kooing.pojo.member.TbUrsMember">
+    update tb_urs_member
+    set uuid = #{uuid,jdbcType=CHAR},
+      member_name = #{memberName,jdbcType=CHAR},
+      member_truename = #{memberTruename,jdbcType=CHAR},
+      member_avatar = #{memberAvatar,jdbcType=CHAR},
+      member_sex = #{memberSex,jdbcType=INTEGER},
+      idcard = #{idcard,jdbcType=CHAR},
+      member_birthday = #{memberBirthday,jdbcType=DATE},
+      member_password = #{memberPassword,jdbcType=CHAR},
+      member_pay_password = #{memberPayPassword,jdbcType=CHAR},
+      member_email = #{memberEmail,jdbcType=CHAR},
+      member_email_bind = #{memberEmailBind,jdbcType=INTEGER},
+      member_mobile = #{memberMobile,jdbcType=CHAR},
+      member_mobile_bind = #{memberMobileBind,jdbcType=INTEGER},
+      member_qq = #{memberQq,jdbcType=CHAR},
+      member_login_num = #{memberLoginNum,jdbcType=INTEGER},
+      member_register_time = #{memberRegisterTime,jdbcType=TIMESTAMP},
+      member_login_time = #{memberLoginTime,jdbcType=TIMESTAMP},
+      member_old_login_time = #{memberOldLoginTime,jdbcType=TIMESTAMP},
+      member_login_ip = #{memberLoginIp,jdbcType=CHAR},
+      member_exit_time = #{memberExitTime,jdbcType=TIMESTAMP},
+      member_wechat_openid = #{memberWechatOpenid,jdbcType=VARCHAR},
+      member_points = #{memberPoints,jdbcType=INTEGER},
+      member_areaid = #{memberAreaid,jdbcType=INTEGER},
+      member_cityid = #{memberCityid,jdbcType=INTEGER},
+      member_provinceid = #{memberProvinceid,jdbcType=INTEGER},
+      member_exppoints = #{memberExppoints,jdbcType=INTEGER},
+      member_grade = #{memberGrade,jdbcType=INTEGER},
+      store_id = #{storeId,jdbcType=INTEGER},
+      clientid = #{clientid,jdbcType=VARCHAR},
+      idcard_front = #{idcardFront,jdbcType=CHAR},
+      idcard_back = #{idcardBack,jdbcType=CHAR},
+      idcard_hand_license = #{idcardHandLicense,jdbcType=CHAR},
+      member_address = #{memberAddress,jdbcType=VARCHAR},
+      member_virtual = #{memberVirtual,jdbcType=INTEGER}
+    where member_id = #{memberId,jdbcType=BIGINT}
+  </update>
+    <select id="findMember" parameterType="com.kooing.pojo.member.TbUrsMember"
+            resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from tb_urs_member
+        <where>
+            <if test="memberName != null">
+                member_name LIKE concat(concat('%',#{memberName}),'%')
+            </if>
+            <if test="memberSex != null">
+                AND member_sex LIKE concat(concat('%',#{memberSex}),'%')
+            </if>
+            <if test="idcard != null">
+                AND idcard LIKE concat(concat('%',#{idcard}),'%')
+            </if>
+            <if test="memberMobile != null">
+                AND member_mobile LIKE concat(concat('%',#{memberMobile}),'%')
+            </if>
+            <if test="memberGrade != null">
+                AND member_grade LIKE concat(concat('%',#{memberGrade}),'%')
+            </if>
+            <if test="storeId != null">
+                AND store_id LIKE concat(concat('%',#{storeId}),'%')
+            </if>
+            <if test="memberVirtual != null">
+                AND member_virtual LIKE concat(concat('%',#{memberVirtual}),'%')
+            </if>
+        </where>
+    </select>
+    <select id="getMember" parameterType="com.kooing.pojo.member.TbUrsMember"
+            resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from tb_urs_member
+        <where>
+            <if test="memberName != null">
+                AND member_name = #{memberName}
+            </if>
+            <if test="memberPassword != null">
+                AND member_password = #{memberPassword}
+            </if>
+            <if test="memberSex != null">
+                AND member_sex LIKE concat(concat('%',#{memberSex}),'%')
+            </if>
+            <if test="idcard != null">
+                AND idcard LIKE concat(concat('%',#{idcard}),'%')
+            </if>
+            <if test="memberMobile != null">
+                AND member_mobile LIKE concat(concat('%',#{memberMobile}),'%')
+            </if>
+            <if test="memberGrade != null">
+                AND member_grade LIKE concat(concat('%',#{memberGrade}),'%')
+            </if>
+            <if test="storeId != null">
+                AND store_id LIKE concat(concat('%',#{storeId}),'%')
+            </if>
+            <if test="memberVirtual != null">
+                AND member_virtual LIKE concat(concat('%',#{memberVirtual}),'%')
+            </if>
+        </where>
+    </select>
+</mapper>

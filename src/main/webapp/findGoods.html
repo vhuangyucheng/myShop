@@ -1,0 +1,249 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title></title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="generator" content=""/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+    <link href="css/haiersoft.css" rel="stylesheet" type="text/css" media="screen,print"/>
+    <link href="css/print.css" rel="stylesheet" type="text/css" media="print"/>
+    <script src="js/jquery-1.10.1.min.js"></script>
+    <script src="js/side.js" type="text/javascript"></script>
+    <script src="js/template-web.js"></script>
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/findGoods/index.js"></script>
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<!-- wrap_left -->
+
+<!-- /wrap_left -->
+
+<!-- picBox -->
+<div class="picBox" onClick="switchSysBar()" id="switchPoint"></div>
+<!-- /picBox -->
+
+
+<!-- wrap_right -->
+<div class="wrap_right">
+    <header>
+        <!-- Header -->
+
+        <!-- /Header -->
+    </header>
+
+
+    <!-- Contents -->
+    <div id="Contents">
+        <script type="text/javascript">
+            $(function () {
+                $(".select").each(function () {
+                    var s = $(this);
+                    var z = parseInt(s.css("z-index"));
+                    var dt = $(this).children("dt");
+                    var dd = $(this).children("dd");
+                    var _show = function () {
+                        dd.slideDown(200);
+                        dt.addClass("cur");
+                        s.css("z-index", z + 1);
+                    };
+                    var _hide = function () {
+                        dd.slideUp(200);
+                        dt.removeClass("cur");
+                        s.css("z-index", z);
+                    };
+                    dt.click(function () {
+                        dd.is(":hidden") ? _show() : _hide();
+                    });
+                    dd.find("a").click(function () {
+                        dt.html($(this).html());
+                        _hide();
+                    });
+                    $("body").click(function (i) {
+                        !$(i.target).parents(".select").first().is(s) ? _hide() : "";
+                    });
+                })
+            })
+        </script>
+
+        <!-- MainForm -->
+        <div id="MainForm">
+            <div class="form_boxB">
+                <h2 style="height: 30px;">
+                    <div class="btn_box floatL mag_l20">商品状态</div>
+
+                    <!-- btn_box -->
+                    <div class="btn_box floatL mag_l20"><input name="" type="button" value="全部"
+                                                               onMouseMove="this.className='input_move'"
+                                                               onMouseOut="this.className='input_out'"
+                                                               onclick="quanBu()"></div>
+                    <!-- /btn_box -->
+
+                    <!-- btn_box -->
+                    <div class="btn_box floatL mag_l20"><input name="" type="button" value="出售中"
+                                                               onMouseMove="this.className='input_move'"
+                                                               onMouseOut="this.className='input_out'"
+                                                               onclick="chuShouZhong()"></div>
+                    <!-- /btn_box -->
+
+                    <!-- btn_box -->
+                    <div class="btn_box floatL mag_l20"><input name="" type="button" value="已售完"
+                                                               onMouseMove="this.className='input_move'"
+                                                               onMouseOut="this.className='input_out'"
+                                                               onclick="yiShouWan()"></div>
+                    <!-- /btn_box -->
+                    <!-- btn_box -->
+                    <div class="btn_box floatL mag_l20"><input name="" type="button" value="以下架"
+                                                               onMouseMove="this.className='input_move'"
+                                                               onMouseOut="this.className='input_out'"
+                                                               onclick="yiXiaJia()"></div>
+                    <!-- /btn_box -->
+                    <!-- btn_box -->
+                    <div class="btn_box floatR mag_l20"><input name="" type="button" value="创建时间"
+                                                               onMouseMove="this.className='input_move'"
+                                                               onMouseOut="this.className='input_out'"
+                                                               onclick="creatTime()"></div>
+                    <!-- /btn_box -->
+                    <!-- btn_box -->
+                    <div class="btn_box floatR mag_l20"><input name="" type="button" value="销量"
+                                                               onMouseMove="this.className='input_move'"
+                                                               onMouseOut="this.className='input_out'"
+                                                               onclick="sale()"></div>
+                    <!-- /btn_box -->
+                    <div class="btn_box floatR mag_l20">排序方式：按照</div>
+                </h2>
+                <table cellpadding="0" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <td colspan="10" class="info_boxA">可以在这对商品进行管理</td>
+                    </tr>
+                    <tr>
+                        <th>序号</th>
+                        <th>商品描述</th>
+                        <th>价格</th>
+                        <th>销量</th>
+                        <th>库存</th>
+                        <th>分类</th>
+                        <th>创建时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody class="myContent"></tbody>
+                </table>
+                <p class="msg">共找到 <a id="total"></a> 条记录，当前显示 <a id="pageNum1"></a> 页, 一共 <a id="pages"></a> 页</p>
+            </div>
+        </div>
+        <!-- /MainForm -->
+
+
+        <!-- BtmMain -->
+        <div id="BtmMain">
+            <span class="ttl">商品搜索</span>
+
+            <!-- txtbox -->
+            <div class="txtbox floatL mag_r20">
+                <span class="sttl">输入名称：</span>
+                <input name="" type="text" size="8" id="searchName">
+                <!-- btn_box -->
+                <div class="btn_box floatR mag_l00"><input name="" type="button" value="搜索"
+                                                           onMouseMove="this.className='input_move'"
+                                                           onMouseOut="this.className='input_out'"
+                                                           onclick="search()"></div>
+            </div>
+            <!-- /txtbox -->
+
+            <!-- btn_box -->
+            <div class="btn_box floatR mag_l20"><input name="" type="button" value="新增"
+                                                       onMouseMove="this.className='input_move'"
+                                                       onMouseOut="this.className='input_out'"
+                                                       onclick="addGoods()"></div>
+            <!-- /btn_box -->
+
+        </div>
+        <!-- /BtmMain -->
+
+        <!-- PageNum -->
+        <ul id="PageNum">
+            <li><a href="#" onclick="firstButton()">首页</a></li>
+            <li><a href="#" onclick="preButton()">上一页</a></li>
+            <li><a href="#" onclick="nextButton()">下一页</a></li>
+            <li><a href="#" onclick="lastButton()">尾页</a></li>
+        </ul>
+        <!-- /PageNum -->
+    </div>
+    <!-- /Contents -->
+
+    <!-- /footer -->
+    <footer>
+        <address>hstc</address>
+    </footer>
+    <!-- /footer -->
+
+</div>
+<!-- /wrap_right -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    增加库存
+                </h4>
+            </div>
+            <div class="modal-body">
+                <input type="text" style="margin-left:100px;" placeholder="请输入添加的库存" id="kuCunNum" >
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="zengJiaKuCun2()">
+                    提交更改
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+</body>
+</html>
+
+<script id="test" type="text/html">
+    {{each data}}
+    <tr>
+        <td>{{$index+1}}</td>
+        <td>{{$value.goodsName}}</td>
+        <td>{{$value.goodsPrice}}</td>
+        <td>{{$value.goodsSale}}</td>
+        <td>{{$value.goodsStorage}}</td>
+        <td>{{$value.gcName}}</td>
+        <td>{{$value.goodsTime | timestamp}}</td>
+        <td class="last"><a href="#" onclick="deleteGoods({{$value.goodsId}})">删除 &nbsp</a> |
+            <a href="#" onclick="updateGoods({{$value.goodsId}})">
+                &nbsp 编辑</a>
+            {{if $value.goodsState ==0 }}
+            <a href="#" onclick="xiaJia({{$value.goodsId}})"> &nbsp
+                |   下架 </a>
+            {{/if}}
+            {{if $value.goodsState ==2 }}
+            <a href="#" onclick="shangJia({{$value.goodsId}})"> &nbsp
+                |   上架 </a>
+            {{/if}}
+            {{if $value.goodsState ==1 }}
+            <a data-toggle="modal" data-target="#myModal" href="#" onclick="zengJiaKuCun1({{$value.goodsId}})"> &nbsp
+                |   增加库存 </a>
+            {{/if}}
+        </td>
+    </tr>
+    {{/each}}
+</script>
+<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>

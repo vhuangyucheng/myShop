@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		var data ={
+		header:{
+			token:"wewe",
+			regOrg:"wwerw",
+			pageNum:1,
+			pageSize:3
+		},
+		body:{}
+	};
+
+	$.ajax({
+		url:'/api/shop/findShop',
+		type:'POST',
+		dataType:'json',
+		contentType:'application/json',
+		data:JSON.stringify(data),
+		success:function(data,textStatus,jqXHR){
+			for (var i in data.data){
+			var html="";
+			html+="<div class='pro'>"+
+			"<div class='proimg'><a href='show02.html'><img src='images/img01.jpg'></a></div>"+
+			"<div class='proname'><a href='show02.html'>"+data.data[i].storeName+"</a></div>"+
+			"</div>";
+			$(".tc").html(html);}
+		},
+		error:function(xhr,textStatus){
+			console.log('错误')
+		}
+	})
+</script>
+</html>
